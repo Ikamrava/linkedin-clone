@@ -14,7 +14,7 @@ import logo from "./images/linkedin.png"
 
 function Header() {
   return (
-    <div className='mx-auto max-w-6xl'>
+    <div className='mx-auto max-w-6xl py-2 shadow-lg bg-white'>
       <header className='  items-center mt-3 ml-2 flex w-full     '>
 
 

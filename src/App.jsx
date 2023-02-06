@@ -1,10 +1,17 @@
 import "./App.css";
+import Feed from "./Feed";
 import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 function App() {
   return (
-    <div className="">
-      <Header />
+    <div className="  max-w-6xl mx-auto ">
+      <Header  />
+      <div className=" flex ">
+      <Sidebar />
+      <Feed/>
+      </div>
+      
     </div>
   );
 }
