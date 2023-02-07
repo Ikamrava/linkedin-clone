@@ -13,7 +13,7 @@ function Sidebar() {
         )
 
   return (
-    <div className='hidden max-w-6xl md:block flex-col mt-2 flex-[0.3] items-start   '>
+    <div className=' max-w-6xl md:block flex-col mt-2 flex-[0.3] items-start   '>
         
         <div className=' flex flex-col items-center w-full pt-0 justify-start bg-white pb-3 rounded-t-lg  '>
             <img className='  h-16 w-[100%] object-cover mb-[-15px] mt-0 rounded-t-lg' src={background} alt="" />
