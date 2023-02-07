@@ -5,12 +5,9 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { MdWork} from 'react-icons/md';
 import { RiMessage2Fill} from 'react-icons/ri';
 import { RiNotification2Fill} from 'react-icons/ri';
-
-
-
-
 import HeaderOption from './HeaderOption';
 import logo from "./images/linkedin.png"
+import UserLogo from './UserLogo';
 
 function Header() {
   return (
@@ -19,7 +16,7 @@ function Header() {
 
 
         <div className='flex gap-4 items-center  '>
-
+     
           <img className=' object-contain w-10' src={logo} alt="" />
 
           <div className=' relative flex flex-col justify-end items-center'>
@@ -40,7 +37,7 @@ function Header() {
             <HeaderOption title="Jobs" Icon={MdWork}/>
             <HeaderOption title="Messaging" Icon={RiMessage2Fill}/>
             <HeaderOption title="Notification" Icon={RiNotification2Fill}/>
-            <HeaderOption title="Me" avatar=""/>
+            <UserLogo userName="Me" link=""/>
             <HeaderOption title="Work" Icon={BsPeopleFill}/>
             
             
