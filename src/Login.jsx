@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import logo from "./images/Linkedintext.png"
 import { auth } from './firebase';
-import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { login } from './app/store';
 
@@ -15,6 +15,8 @@ function Login() {
   const [imageurl,setImageurl]=useState("")
   const dispatch = useDispatch()
 
+ 
+
 
   async function getData (){
 
@@ -24,7 +26,7 @@ function Login() {
           displayName:name,
           photoURL:imageurl
          })
-         
+
       if(user){
           dispatch(login({
           email:user.email,
@@ -41,6 +43,20 @@ function Login() {
 
   const loginToApp = (e)=>{
     e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+    .then((user) => {
+       dispatch(login({
+            email:user.email,
+            uid: user.uid,
+            displayName:user.displayName,
+            photoURL:user.photoURL,
+
+          }))
+     })
+      .catch((error) => {
+         alert(error)
+  });
+
   } 
   const register =()=>{
   
