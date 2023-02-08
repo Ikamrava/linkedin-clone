@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import logo from "./images/Linkedintext.png"
-import { auth } from './firebase'
+import { auth } from './firebase';
 import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { login } from './app/store';
+
 
 
 
@@ -22,17 +23,20 @@ function Login() {
     await updateProfile(auth.currentUser,{
           displayName:name,
           photoURL:imageurl
-         }).catch(e=>{
-          alert(e)
          })
-         console.log(user.displayName)
-       dispatch(login({
+         
+      if(user){
+          dispatch(login({
           email:user.email,
           uid: user.uid,
           displayName:user.displayName,
           photoURL:user.photoURL,
 
         }))
+      }else{
+        alert("No connection to DatabaseError, please try latter")
+      }
+       
   }
 
   const loginToApp = (e)=>{
