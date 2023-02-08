@@ -16,8 +16,8 @@ function App() {
       <Feed/>
       <Sidebar />
       </div>
-      }
       
+  }
     </div>
   );
 }

@@ -41,7 +41,7 @@ function Feed() {
       
          }
       
-      // getdata()
+      getdata()
 
 
    },[post])
