@@ -17,28 +17,33 @@ function Login() {
     e.preventDefault()
   } 
   const register =()=>{
-    
+  
     if(!name) {
       return alert("Please enter a full name")
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((currentUser) => {
-        updateProfile(auth, currentUser,{
+
+    .then(() => {  
+        updateProfile(auth.currentUser,{
           displayName:name,
           photoURL:imageurl
-    }).then(()=>{
-      dispatch(login({
-        email:currentUser.email,
-        uid: currentUser.uid,
-        displayName:currentUser.displayName,
-        photoURL:currentUser.imageurl,
+         })
+         const currentUser = auth.currentUser
+         console.log(currentUser)
 
-      }))
-  })
-  }).catch(e=>{
-    alert(e.message)
-  })
+         dispatch(login({type: "login"},{
+          email:currentUser.email,
+          uid: currentUser.uid,
+          displayName:currentUser.displayName,
+          photoURL:currentUser.imageurl,
+
+        }))
+
+
+    })
+  
+
 
   
     setEmail("")
@@ -46,6 +51,7 @@ function Login() {
     setPassword("")
     setName("")
   }
+
   return (
     <div className='  max-w-sm mx-auto mt-10 flex flex-col justify-center items-center gap-5'>
         <img className=" w-40 mx-auto" src={logo} alt="" />
