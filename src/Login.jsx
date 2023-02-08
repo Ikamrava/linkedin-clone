@@ -3,7 +3,9 @@ import logo from "./images/Linkedintext.png"
 import { auth } from './firebase'
 import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
-import login from "./features/counter/userSlice"
+import { login } from './app/store';
+
+
 
 function Login() {
   const [email,setEmail]=useState("")
@@ -13,6 +15,26 @@ function Login() {
   const dispatch = useDispatch()
 
 
+  async function getData (){
+
+    createUserWithEmailAndPassword(auth, email, password)
+    const user = auth.currentUser
+    await updateProfile(auth.currentUser,{
+          displayName:name,
+          photoURL:imageurl
+         }).catch(e=>{
+          alert(e)
+         })
+         console.log(user.displayName)
+       dispatch(login({
+          email:user.email,
+          uid: user.uid,
+          displayName:user.displayName,
+          photoURL:user.photoURL,
+
+        }))
+  }
+
   const loginToApp = (e)=>{
     e.preventDefault()
   } 
@@ -21,31 +43,7 @@ function Login() {
     if(!name) {
       return alert("Please enter a full name")
     }
-
-    createUserWithEmailAndPassword(auth, email, password)
-
-    .then(() => {  
-        updateProfile(auth.currentUser,{
-          displayName:name,
-          photoURL:imageurl
-         })
-         const currentUser = auth.currentUser
-         console.log(currentUser)
-
-         dispatch(login({type: "login"},{
-          email:currentUser.email,
-          uid: currentUser.uid,
-          displayName:currentUser.displayName,
-          photoURL:currentUser.imageurl,
-
-        }))
-
-
-    })
-  
-
-
-  
+    getData()
     setEmail("")
     setImageurl("")
     setPassword("")
