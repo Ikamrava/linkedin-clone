@@ -20,26 +20,26 @@ function Login() {
 
   async function getData (){
 
-    createUserWithEmailAndPassword(auth, email, password)
-    const user = auth.currentUser
-    await updateProfile(auth.currentUser,{
+    await createUserWithEmailAndPassword(auth, email, password)
+    const user =  auth.currentUser
+      console.log(user)
+      await updateProfile(auth.currentUser,{
           displayName:name,
           photoURL:imageurl
          })
 
-      if(user){
-          dispatch(login({
-          email:user.email,
-          uid: user.uid,
-          displayName:user.displayName,
-          photoURL:user.photoURL,
+     
 
-        }))
-      }else{
-        alert("No connection to DatabaseError, please try latter")
-      }
-       
+     dispatch(login({
+            email:user.email,
+            uid: user.uid,
+            displayName:user.displayName,
+            photoURL:user.photoURL,
+
+          }))
+
   }
+
 
   const loginToApp = (e)=>{
     e.preventDefault()
@@ -63,7 +63,9 @@ function Login() {
     if(!name) {
       return alert("Please enter a full name")
     }
+
     getData()
+    
     setEmail("")
     setImageurl("")
     setPassword("")
