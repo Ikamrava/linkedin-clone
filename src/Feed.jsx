@@ -59,7 +59,7 @@ function Feed() {
       const postref = collection(storage, "posts")
        await setDoc(doc(postref), {
             name: user.displayName,
-            description: "this is my second one",
+            description: user.email,
             message: inputvalue ,
             photurl: user.photoURL,
             timestamp: serverTimestamp()
@@ -70,8 +70,8 @@ function Feed() {
    }
 
   return (
-   <div className=' md:flex-[0.7] items-start mt-2  max-w-6xl'>
-     <div className='  flex flex-col w-full bg-white pt-5 rounded-t-lg '>
+   <div className=' md:flex-[0.8] items-start   max-w-6xl  '>
+     <div className='  flex flex-col w-full bg-white pt-5 rounded-t-lg px-4 '>
         <div className='flex  w-full justify-center rounded-t-lg'>
             <div className=' relative'>
                <BsFillPencilFill className=' absolute top-3 left-3'/>
@@ -84,7 +84,7 @@ function Feed() {
         </div>
      </div>
 
-      <div className='flex justify-evenly pt-6 bg-white rounded-b-lg pb-6' >
+      <div className='flex justify-evenly pt-6 bg-white rounded-b-lg pb-6 px-4' >
          <InputOption Icon={BsImage} title={"Photos"} color={"blue"}/>
          <InputOption Icon={BiVideoRecording} title={"Video"} color={"red"}/>
          <InputOption Icon={MdEvent} title={"Event"} color={"gray"}/>
@@ -93,7 +93,7 @@ function Feed() {
 
       {post && post.map(item =>(
          
-         <div key={item.id} className='bg-white mt-3 p-4 w-full rounded-lg'>
+         <div key={item.id} className='bg-white mt-3 p-4 w-full rounded-lg px-4'>
             <Post name={item.data.name} description={item.data.description} message={item.data.message} photurl={item.data.photurl}/>
          </div>
             

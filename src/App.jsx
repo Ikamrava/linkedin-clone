@@ -33,21 +33,22 @@ function App() {
   },[dispatch])
 
   return (
-    <div className="  max-w-6xl mx-auto  ">
+    
+    <div className="  max-w-6xl mx-auto px-4 ">
       
-     {!user ? 
+     {user ? 
      <>
-      
+        <Header  />
+        <div className=" md:flex flex-row gap-4 mt-10">
+          <Feed/>
+          <Sidebar className="sticky top-1 " />
+        </div>
+       </>:
+     <>
       <Login/>
      </> 
-       : 
-       <>
-        <Header  />
-        <div className=" flex flex-col md:flex-row gap-2 ">
-        <Feed/>
-        <Sidebar />
-        </div>
-       </>
+       
+       
       }
       
   

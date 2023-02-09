@@ -48,7 +48,7 @@ function Header() {
             <HeaderOption title="Jobs" Icon={MdWork}/>
             <HeaderOption title="Messaging" Icon={RiMessage2Fill}/>
             <HeaderOption title="Notification" Icon={RiNotification2Fill}/>
-            {user.email && <UserLogo userName={user.displayName} link={user.photoURL} onclick={logoutHandler}/>}
+            <UserLogo userName={user.displayName} link={user.photoURL} onclick={logoutHandler}/>
             <HeaderOption title="Work" Icon={BsPeopleFill}/>
         </div>
 
