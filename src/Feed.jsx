@@ -61,7 +61,7 @@ function Feed() {
             name: user.displayName,
             description: "this is my second one",
             message: inputvalue ,
-            photurl: false,
+            photurl: user.photoURL,
             timestamp: serverTimestamp()
        })
 
