@@ -10,6 +10,7 @@ import { storage  } from './firebase';
 import { collection, doc, setDoc ,getDocs } from "firebase/firestore"; 
 import { serverTimestamp ,collectionGroup } from "firebase/firestore"
 import { query, orderBy } from "firebase/firestore";  
+import { useSelector } from 'react-redux';
 
 
 
@@ -21,6 +22,7 @@ function Feed() {
 
    const [post,setPost]=useState([])
    const [inputvalue,setInputValue] = useState("")
+   const user = useSelector((state) => state.user.user);
 
    useEffect(()=>{
 
@@ -44,6 +46,7 @@ function Feed() {
       getdata()
 
 
+
    },[post])
 
    function handleChange(e){
@@ -55,8 +58,8 @@ function Feed() {
       e.preventDefault()
       const postref = collection(storage, "posts")
        await setDoc(doc(postref), {
-            name: "Iman",
-            descriptopn: "this is my second one",
+            name: user.displayName,
+            description: "this is my second one",
             message: inputvalue ,
             photurl: false,
             timestamp: serverTimestamp()
@@ -90,7 +93,7 @@ function Feed() {
 
       {post && post.map(item =>(
          
-         <div key={item.data.id} className='bg-white mt-3 p-4 w-full rounded-lg'>
+         <div key={item.id} className='bg-white mt-3 p-4 w-full rounded-lg'>
             <Post name={item.data.name} description={item.data.description} message={item.data.message} photurl={item.data.photurl}/>
          </div>
             
