@@ -12,7 +12,7 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  const username = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -34,12 +34,20 @@ function App() {
 
   return (
     <div className="  max-w-6xl mx-auto  ">
-      <Header  />
-     {!username ?  <Login/>  : 
-      <div className=" flex flex-col md:flex-row gap-2 ">
-      <Feed/>
-      <Sidebar />
-      </div>
+      
+     {!user ? 
+     <>
+      
+      <Login/>
+     </> 
+       : 
+       <>
+        <Header  />
+        <div className=" flex flex-col md:flex-row gap-2 ">
+        <Feed/>
+        <Sidebar />
+        </div>
+       </>
       }
       
   

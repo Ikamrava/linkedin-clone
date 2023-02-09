@@ -8,11 +8,12 @@ import { RiNotification2Fill} from 'react-icons/ri';
 import HeaderOption from './HeaderOption';
 import logo from "./images/linkedin.png"
 import UserLogo from './UserLogo';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from './app/store';
 import { auth } from './firebase';
 
 function Header() {
+  const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch()
    function logoutHandler(){
@@ -47,7 +48,7 @@ function Header() {
             <HeaderOption title="Jobs" Icon={MdWork}/>
             <HeaderOption title="Messaging" Icon={RiMessage2Fill}/>
             <HeaderOption title="Notification" Icon={RiNotification2Fill}/>
-            <UserLogo userName="Me" link="" onclick={logoutHandler}/>
+            {user.email && <UserLogo userName={user.displayName} link={user.photoURL} onclick={logoutHandler}/>}
             <HeaderOption title="Work" Icon={BsPeopleFill}/>
         </div>
 

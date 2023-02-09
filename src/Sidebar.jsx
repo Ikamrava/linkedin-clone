@@ -1,10 +1,18 @@
 
 import Avatar from 'react-avatar';
 import React from 'react'
-import avatar from "./images/ik.png"
 import background from "./images/back.jpg"
+import { useSelector } from 'react-redux';
 
 function Sidebar() {
+
+   const user = useSelector((state) => state.user.user);
+   let photo = ""
+   if(user.photoURL){
+    photo = user.photoURL
+   }else{
+    photo = "/"
+   }
 
     const RecentItem = (topic) =>(
         <div className=' pb-2 rounded-xl '>
@@ -17,9 +25,9 @@ function Sidebar() {
         
         <div className=' flex flex-col items-center w-full pt-0 justify-start bg-white pb-3 rounded-t-lg  '>
             <img className='  h-16 w-[100%] object-cover mb-[-15px] mt-0 rounded-t-lg' src={background} alt="" />
-            <Avatar className=' ' src={avatar} size="35" round={true}/>
-            <p className=' text-xl font-bold'>Iman</p>
-            <p className=' text-gray-600'>iman.kamrava@gmail.com</p>
+            <Avatar className=' ' src={photo} size="35" round={true} name={user.displayName} />
+            <p className=' text-xl font-bold capitalize'>{user.displayName}</p>
+            <p className=' text-gray-600'>{user.email}</p>
         </div>
     
         <div className=' flex flex-col px-4 mt-1 mb-2 bg-white pb-3 pt-2 rounded-b-lg w-full'>
