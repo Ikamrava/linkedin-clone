@@ -1,6 +1,5 @@
 
 import "./App.css";
-
 import Feed from "./Feed";
 import Header from "./Header";
 import Login from "./Login";

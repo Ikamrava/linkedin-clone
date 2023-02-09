@@ -23,6 +23,7 @@ function Feed() {
    const [post,setPost]=useState([])
    const [inputvalue,setInputValue] = useState("")
    const user = useSelector((state) => state.user.user);
+   const [isliked ,setIsLiked] = useState(false)
 
    useEffect(()=>{
 
@@ -62,7 +63,8 @@ function Feed() {
             description: user.email,
             message: inputvalue ,
             photurl: user.photoURL,
-            timestamp: serverTimestamp()
+            timestamp: serverTimestamp(),
+            isliked:isliked
        })
 
        setInputValue("")
@@ -92,9 +94,8 @@ function Feed() {
       </div>
 
       {post && post.map(item =>(
-         
-         <div key={item.id} className='bg-white mt-3 p-4 w-full rounded-lg px-4'>
-            <Post name={item.data.name} description={item.data.description} message={item.data.message} photurl={item.data.photurl}/>
+         <div key={item.id}  className='bg-white mt-3 p-4 w-full rounded-lg px-4'>
+            <Post name={item.data.name} id={item.id} description={item.data.description} message={item.data.message} photurl={item.data.photurl} post={post} isliked={item.data.isliked}/>
          </div>
             
       ))}
